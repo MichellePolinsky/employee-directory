@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
-// import { Link } from 'react-router-dom'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const HomePage = () => {
   const [getStaff, setGetStaff] = useState([])
@@ -24,19 +23,14 @@ const HomePage = () => {
       <div>
         {getStaff.map((staff, i) => {
           return (
-            <p key={i}>
-              {staff.firstName} {staff.lastName} - {staff.jobTitle}
-            </p>
-             <Link to={`/${EmployeePage.id}`}>
-             <li>
-               <h3>{EmployeePage.firstName}</h3>
-             </li>
-           </Link>
-             <Switch>
-             <Route exact path="/" component={EmployeePage}></Route>
-           </Switch>
-         </Router>
-          
+            <section key={i}>
+              <Link to={{ pathname: `/employee/${staff.id}` }}>
+                <h3>
+                  {staff.firstName} {staff.lastName}
+                </h3>
+              </Link>
+            </section>
+          )
         })}
       </div>
     </main>
